@@ -1,3 +1,3 @@
 export default {
-  baseURL: '', // Informe aqui a url do próprio servidor. Exemplo: "http://localhost:3333"
+  baseURL: 'https://twitter-hashtag-monitor-server.herokuapp.com',
 };
