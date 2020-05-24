@@ -1,2 +1,2 @@
 web: yarn start:server
-web: yarn start:queue
+queue: yarn start:queue
