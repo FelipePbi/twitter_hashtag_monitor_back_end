@@ -21,12 +21,13 @@ class MonitorController {
         );
 
         if (newTweets.length > 0) {
+          console.log('Tweets: ', newTweets.length);
           state.received = [...state.received, ...newTweets];
           await io.emit('received_request', state.received);
         }
       }
 
-      return res.status(404).json({ success: true, errors: ['Tweet not found'] });
+      return res.status(200).json({ success: true, errors: [] });
     } catch (err) {
       return res.status(500).json({ success: true, errors: [err] });
     }
