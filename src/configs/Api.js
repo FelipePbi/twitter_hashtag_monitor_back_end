@@ -1,3 +1,3 @@
 export default {
-  baseURL: 'http://localhost:3334/api',
+  baseURL: '', // Informe aqui a url do próprio servidor. Exemplo: "http://localhost:3333"
 };

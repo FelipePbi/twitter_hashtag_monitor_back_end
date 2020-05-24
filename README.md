@@ -42,11 +42,11 @@ $ npm install
 
 1 - Acesse o site [Twitter Developer](https://developer.twitter.com/en) e registre uma conta de desenvolvedor, crie uma aplicação e obtenha seu _Bearer Token_.
 
-2 - Após o passo 1, acesse o arquivo [src / configs / SecretApiTwitter.js](https://github.com/FelipePbi/twitter_hashtag_monitor_beck_end/blob/master/src/configs/SecretApiTwitter.js) e edite o valor do campo bearer*token (linha 3) informando o seu \_Bearer Token*.
+2 - Após o passo 1, acesse o arquivo [src / configs / SecretApiTwitter.js](https://github.com/FelipePbi/twitter_hashtag_monitor_beck_end/blob/master/src/configs/SecretApiTwitter.js) e edite o valor do campo `bearer\_token` (linha 3) informando o seu _Bearer Token_.
 
 3 - Acesse o arquivo [src / configs / Api.js](https://github.com/FelipePbi/twitter_hashtag_monitor_beck_end/blob/master/src/configs/Api.js) e edite o valor do campo baseURL (linha 2) informando o seu o IP da sua máquina, exemplo _http://localhost:3333_.
 
-4 - Acesse o arquivo [src / configs / Redis.js](https://github.com/FelipePbi/twitter_hashtag_monitor_beck_end/blob/master/src/configs/Redis.js) e edite os valores dos campos host (linha 2), port (linha 3) e password (linha 4) informando os dados de conexão do seu Redis.
+4 - Acesse o arquivo [src / configs / Redis.js](https://github.com/FelipePbi/twitter_hashtag_monitor_beck_end/blob/master/src/configs/Redis.js) e edite os valores dos campos `host` (linha 2), `port` (linha 3) e `password` (linha 4) informando os dados de conexão do seu Redis.
 
 ### Rodando o servidor
 
@@ -64,21 +64,33 @@ O URL base é: http://localhost:3333/api
 
 - Iniciar/Parar monitoramento de determinada Hashtag
 
-| URL      | Method | Params                                                                         | URL Params | Success Response                                                     | Error Response                                                                                                              |
-| -------- | ------ | ------------------------------------------------------------------------------ | ---------- | -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| /monitor | `POST` | `hashtag` - String com a hashtag <br /> `monitoring` - Status do monitoramento | -          | **Code:** 200 - OK<br />**Content:** `{ success: true, errors: [] }` | **Code:** 500 - INTERNAL SERVER ERROR <br />**Content:** `{ success: false, errors: [<Mensagem com a descrição do Erro>] }` |
+| URL      | Method | Params                                                                               | URL Params | Success Response                                                     | Error Response                                                                                                              |
+| -------- | ------ | ------------------------------------------------------------------------------------ | ---------- | -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| /monitor | `POST` | `hashtag` - String com a hashtag <br /><br /> `monitoring` - Status do monitoramento | -          | **Code:** 200 - OK<br />**Content:** `{ success: true, errors: [] }` | **Code:** 500 - INTERNAL SERVER ERROR <br />**Content:** `{ success: false, errors: [<Mensagem com a descrição do Erro>] }` |
 
-- Resetar todas listas e campos
+- Resetar listas e campos
 
 | URL            | Method | Params | URL Params | Success Response                                                     | Error Response                                                                                                              |
 | -------------- | ------ | ------ | ---------- | -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
 | /monitor/reset | `POST` | -      | -          | **Code:** 200 - OK<br />**Content:** `{ success: true, errors: [] }` | **Code:** 500 - INTERNAL SERVER ERROR <br />**Content:** `{ success: false, errors: [<Mensagem com a descrição do Erro>] }` |
 
-<!-- routes.post('/monitor', MonitorController.store);
-routes.post('/monitor/reset', MonitorController.resetState);
-routes.post('/monitor/tweets/receive', MonitorController.receiveTweets);
-routes.post('/monitor/tweets/approve', MonitorController.approveTweet);
-routes.post('/monitor/tweets/reject', MonitorController.rejectTweet); -->
+- Aprovar Tweet
+
+| URL                     | Method | Params             | URL Params | Success Response                                                     | Error Response                                                                                                              |
+| ----------------------- | ------ | ------------------ | ---------- | -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| /monitor/tweets/approve | `POST` | `id` - ID do Tweet | -          | **Code:** 200 - OK<br />**Content:** `{ success: true, errors: [] }` | **Code:** 500 - INTERNAL SERVER ERROR <br />**Content:** `{ success: false, errors: [<Mensagem com a descrição do Erro>] }` |
+
+- Rejeitar Tweet
+
+| URL                    | Method | Params             | URL Params | Success Response                                                     | Error Response                                                                                                              |
+| ---------------------- | ------ | ------------------ | ---------- | -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| /monitor/tweets/reject | `POST` | `id` - ID do Tweet | -          | **Code:** 200 - OK<br />**Content:** `{ success: true, errors: [] }` | **Code:** 500 - INTERNAL SERVER ERROR <br />**Content:** `{ success: false, errors: [<Mensagem com a descrição do Erro>] }` |
+
+- Receber Tweets
+
+| URL                     | Method | Params                     | URL Params | Success Response                                                     | Error Response                                                                                                              |
+| ----------------------- | ------ | -------------------------- | ---------- | -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| /monitor/tweets/receive | `POST` | `tweets` - Lista de Tweets | -          | **Code:** 200 - OK<br />**Content:** `{ success: true, errors: [] }` | **Code:** 500 - INTERNAL SERVER ERROR <br />**Content:** `{ success: false, errors: [<Mensagem com a descrição do Erro>] }` |
 
 ## Sobre
 
