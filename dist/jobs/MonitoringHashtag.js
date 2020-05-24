@@ -1,8 +1,16 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _axios = require('axios'); var _axios2 = _interopRequireDefault(_axios);
-var _TwitterAPI = require('../services/TwitterAPI'); var _TwitterAPI2 = _interopRequireDefault(_TwitterAPI);
-var _Api = require('../configs/Api'); var _Api2 = _interopRequireDefault(_Api);
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+var _axios = require('axios');
+var _axios2 = _interopRequireDefault(_axios);
+var _TwitterAPI = require('../services/TwitterAPI');
+var _TwitterAPI2 = _interopRequireDefault(_TwitterAPI);
+var _Api = require('../configs/Api');
+var _Api2 = _interopRequireDefault(_Api);
 
-exports. default = {
+exports.default = {
   key: 'MonitoringHashtag',
   async handle(props) {
     const { dateString, hashtag } = props.data;
@@ -23,7 +31,9 @@ exports. default = {
         return { id: x.id, text: x.text, name, username, profile_image_url, verified };
       });
 
-      await _axios2.default.post(`${_Api2.default.baseURL}/monitor/tweets/receive`, { tweets: response });
+      await _axios2.default.post(`${_Api2.default.baseURL}/api/monitor/tweets/receive`, {
+        tweets: response,
+      });
     }
   },
 };
