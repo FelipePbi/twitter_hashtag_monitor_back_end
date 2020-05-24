@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 import socketio from 'socket.io';
 import http from 'http';
 import cors from 'cors';
-import BullBoard from 'bull-board';
+// import BullBoard from 'bull-board';
 
 import routes from './routes';
 import Queue from './services/Queue';
@@ -54,8 +54,8 @@ class App {
   }
 
   routes() {
-    BullBoard.setQueues([Queue]);
-    this.app.use('/admin/queues', BullBoard.UI);
+    // BullBoard.setQueues([Queue]);
+    // this.app.use('/admin/queues', BullBoard.UI);
     this.app.use('/api', routes);
   }
 
