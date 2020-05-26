@@ -1,7 +1,8 @@
 import express from 'express';
 import logger from 'morgan';
 import bodyParser from 'body-parser';
-import dotenv from 'dotenv';
+import helmet from 'helmet';
+import rateLimit from 'express-rate-limit';
 import socketio from 'socket.io';
 import http from 'http';
 import cors from 'cors';
@@ -10,9 +11,14 @@ import cors from 'cors';
 import routes from './routes';
 import Queue from './services/Queue';
 
+// Limite de 1200 Request a cada 10 min.
+const limiter = rateLimit({
+  windowMs: 10 * 60 * 1000,
+  max: 1200,
+});
+
 class App {
   constructor() {
-    dotenv.config();
     this.app = express();
     this.server = http.Server(this.app);
     this.io = socketio(this.server);
@@ -41,6 +47,8 @@ class App {
   }
 
   middlewares() {
+    this.server.use(limiter);
+    this.server.use(helmet());
     this.app.use(cors());
     this.app.use(express.json());
     this.app.use(logger('dev'));
