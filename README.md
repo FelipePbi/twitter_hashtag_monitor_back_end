@@ -1,4 +1,4 @@
-## Twitter Hashtag Monitor - Servidor [Beck-end]
+## Twitter Hashtag Monitor - Servidor [Back-end]
 
 Servidor da aplicação de monitoramento de hashtag no Twitter.
 
